@@ -1,0 +1,197 @@
+import math
+import tkinter
+from graphics import *
+from tkinter import *
+
+# Created By George Shea a ßeta product an Open Source project
+
+def controller():
+
+    def ButtonOne():
+        global status
+        status = 1
+    def ButtonTwo():
+        global status
+        status = 2
+    def ButtonThree():
+        global status
+        status = 3
+    def ButtonFour():
+        global status
+        status = 4
+
+    def taxmath():      # 1 single 2 married joint 3 married seperate 4 head of house hold
+        if status == 1:             # single controll
+            IncomeGui = (entry_1.get())
+            print("incomegui", IncomeGui)
+            income = float(IncomeGui)  # turns string into a flaot
+            print("income", income)
+            # Tax precents
+            firstPrecent = 5.35
+            secondPrecent = 7.05
+            thirdPrecent = 7.85
+            fourthPrecent = 9.85
+            firstBracketL = 0  # Tax Brackets for mn single
+            firstBracketH = 26520
+            SecondBracketL = 26521
+            SecondBracketH = 87110
+            thirdBracketL = 87111
+            thirdBracketH = 163890
+            # fourth tax brack is anything above this
+            if firstBracketL < income and income < firstBracketH:
+                income = income * (firstPrecent / 100)
+            if SecondBracketL < income and income < SecondBracketH:
+                incometwo = ((income - SecondBracketL) * (secondPrecent / 100))
+                income = ((SecondBracketL) * (firstPrecent / 100)) + incometwo
+            if thirdBracketL < income and income < thirdBracketH:
+                incomeThree = ((income - thirdBracketL) * (thirdPrecent / 100))
+                incometwo = ((SecondBracketH - SecondBracketL) * (secondPrecent / 100))
+                income = ((firstBracketH) * (firstPrecent / 100)) + incometwo + incomeThree
+            if income > thirdBracketH:
+                incomeFour = ((income - thirdBracketH) * (fourthPrecent / 100))
+                incomeThree = ((thirdBracketH - thirdBracketL) * (thirdPrecent / 100))
+                incometwo = ((SecondBracketH - SecondBracketL) * (secondPrecent / 100))
+                income = ((firstBracketH) * (firstPrecent / 100)) + incometwo + incomeThree + incomeFour
+            print("income after math", income)
+            IncomeStr = str(income)  # converts income back into a string
+            print("incoemstr", IncomeStr)
+            string_to_display = "owed " + IncomeStr
+            label_2 = Label(window, bg='gray32', fg='white', borderwidth=.001)
+            label_2["text"] = string_to_display
+            label_2.grid(row=1, column=2)   # look here                     ----------------------------
+        if status == 2:         # marriared joint
+            IncomeGui = (entry_1.get())
+            print("incomegui", IncomeGui)
+            income = float(IncomeGui)  # turns string into a flaot
+            print("income", income)
+            # Tax precents
+            firstPrecent = 5.35
+            secondPrecent = 7.05
+            thirdPrecent = 7.85
+            fourthPrecent = 9.85
+            firstBracketL2 = 0  # Tax Brackets for mn single
+            firstBracketH2 = 38770
+            SecondBracketL2 = 38771
+            SecondBracketH2 = 154020
+            thirdBracketL2 = 154021
+            thirdBracketH2 = 273151
+            # fourth tax brack is anything above this
+            if firstBracketL2 < income and income < firstBracketH2:
+                income = income * (firstPrecent / 100)
+            if SecondBracketL2 < income and income < SecondBracketH2:
+                incometwo = ((income - SecondBracketL2) * (secondPrecent / 100))
+                income = ((SecondBracketL2) * (firstPrecent / 100)) + incometwo
+            if thirdBracketL2 < income and income < thirdBracketH2:
+                incomeThree = ((income - thirdBracketL2) * (thirdPrecent / 100))
+                incometwo = ((SecondBracketH2 - SecondBracketL2) * (secondPrecent / 100))
+                income = ((firstBracketH2) * (firstPrecent / 100)) + incometwo + incomeThree
+            if income > thirdBracketH2:
+                incomeFour = ((income - thirdBracketH2) * (fourthPrecent / 100))
+                incomeThree = ((thirdBracketH2 - thirdBracketL2) * (thirdPrecent / 100))
+                incometwo = ((SecondBracketH2 - SecondBracketL2) * (secondPrecent / 100))
+                income = ((firstBracketH2) * (firstPrecent / 100)) + incometwo + incomeThree + incomeFour
+            print("income after math", income)
+            IncomeStr = str(income)  # converts income back into a string
+            print("incoemstr", IncomeStr)
+            string_to_display = "owed " + IncomeStr
+            label_2 = Label(window, bg='gray32', fg='white', borderwidth=.001)
+            label_2["text"] = string_to_display
+            label_2.grid(row=1, column=2)   # look here                     ----------------------------
+        if status == 3:         # marriared seperate
+            IncomeGui = (entry_1.get())
+            print("incomegui", IncomeGui)
+            income = float(IncomeGui)  # turns string into a flaot
+            print("income", income)
+            # Tax precents
+            firstPrecent = 5.35
+            secondPrecent = 7.05
+            thirdPrecent = 7.85
+            fourthPrecent = 9.85
+            firstBracketL3 = 0  # Tax Brackets for mn single
+            firstBracketH3 = 19390
+            SecondBracketL3 = 19831
+            SecondBracketH3 = 77010
+            thirdBracketL3 = 77011
+            thirdBracketH3 = 136580
+            # fourth tax brack is anything above this
+            if firstBracketL3 < income and income < firstBracketH3:
+                income = income * (firstPrecent / 100)
+            if SecondBracketL3 < income and income < SecondBracketH3:
+                incometwo = ((income - SecondBracketL3) * (secondPrecent / 100))
+                income = ((SecondBracketL3) * (firstPrecent / 100)) + incometwo
+            if thirdBracketL3 < income and income < thirdBracketH3:
+                incomeThree = ((income - thirdBracketL3) * (thirdPrecent / 100))
+                incometwo = ((SecondBracketH3 - SecondBracketL3) * (secondPrecent / 100))
+                income = ((firstBracketH3) * (firstPrecent / 100)) + incometwo + incomeThree
+            if income > thirdBracketH3:
+                incomeFour = ((income - thirdBracketH3) * (fourthPrecent / 100))
+                incomeThree = ((thirdBracketH3 - thirdBracketL3) * (thirdPrecent / 100))
+                incometwo = ((SecondBracketH3 - SecondBracketL3) * (secondPrecent / 100))
+                income = ((firstBracketH3) * (firstPrecent / 100)) + incometwo + incomeThree + incomeFour
+            print("income after math", income)
+            IncomeStr = str(income)  # converts income back into a string
+            print("incoemstr", IncomeStr)
+            string_to_display = "owed " + IncomeStr
+            label_2 = Label(window, bg='gray32', fg='white', borderwidth=.001)
+            label_2["text"] = string_to_display
+            label_2.grid(row=1, column=2)   # look here                     ----------------------------
+        if status == 4:         # marriared seperate
+            IncomeGui = (entry_1.get())
+            print("incomegui", IncomeGui)
+            income = float(IncomeGui)  # turns string into a flaot
+            print("income", income)
+            # Tax precents
+            firstPrecent = 5.35
+            secondPrecent = 7.05
+            thirdPrecent = 7.85
+            fourthPrecent = 9.85
+            firstBracketL4 = 0  # Tax Brackets for mn single
+            firstBracketH4 = 32650
+            SecondBracketL4 = 32651
+            SecondBracketH4 = 131190
+            thirdBracketL4 = 218520
+            thirdBracketH4 = 218521
+            # fourth tax brack is anything above this
+            if firstBracketL4 < income and income < firstBracketH4:
+                income = income * (firstPrecent / 100)
+            if SecondBracketL4 < income and income < SecondBracketH4:
+                incometwo = ((income - SecondBracketL4) * (secondPrecent / 100))
+                income = ((SecondBracketL4) * (firstPrecent / 100)) + incometwo
+            if thirdBracketL4 < income and income < thirdBracketH4:
+                incomeThree = ((income - thirdBracketL4) * (thirdPrecent / 100))
+                incometwo = ((SecondBracketH4 - SecondBracketL4) * (secondPrecent / 100))
+                income = ((firstBracketH4) * (firstPrecent / 100)) + incometwo + incomeThree
+            if income > thirdBracketH4:
+                incomeFour = ((income - thirdBracketH4) * (fourthPrecent / 100))
+                incomeThree = ((thirdBracketH4 - thirdBracketL4) * (thirdPrecent / 100))
+                incometwo = ((SecondBracketH4 - SecondBracketL4) * (secondPrecent / 100))
+                income = ((firstBracketH4) * (firstPrecent / 100)) + incometwo + incomeThree + incomeFour
+            print("income after math", income)
+            IncomeStr = str(income)  # converts income back into a string
+            print("incoemstr", IncomeStr)
+            string_to_display = "owed " + IncomeStr
+            label_2 = Label(window, bg='gray32', fg='white', borderwidth=.001)
+            label_2["text"] = string_to_display
+            label_2.grid(row=1, column=2)   # look here                     ----------------------------
+
+    window = GraphWin("start")
+    window.configure(bg='grey29')
+    label_1 = Label(window, text="please Enter Income:", bg='gray32', fg='white', borderwidth=.001)
+    entry_1 = Entry(window, bg='gray30', fg='white', borderwidth=.001)
+    button_0 = Button(window, text="  press here  ", bg='gray32', fg='white', borderwidth=.001, command=taxmath) # tax code
+    button_1 = Button(window, text="  Single  ", bg='gray32', fg='white', borderwidth=.001, command=ButtonOne)
+    button_2 = Button(window, text="  Married Jointly  ", bg='gray32', fg='white', borderwidth=.001, command=ButtonTwo)
+    button_3 = Button(window, text="  Married Seperatly  ", bg='gray32', fg='white', borderwidth=.001, command=ButtonThree)
+    button_4 = Button(window, text="  Head Of Household  ", bg='gray32', fg='white', borderwidth=.001, command=ButtonFour)
+
+    label_1.grid(row=0, column=1)   # income lable
+    entry_1.grid(row=0, column=2)   # take a guess what this does put income in here
+    button_0.grid(row=2, column=1)  # Actiavtion button
+    button_1.grid(row=0, column=0)  # single
+    button_2.grid(row=1, column=0)  # married joint
+    button_3.grid(row=2, column=0)  # married seperat
+    button_4.grid(row=3, column=0)  # head of house
+
+    window.mainloop()
+
+controller()
