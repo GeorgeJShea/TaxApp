@@ -1,0 +1,485 @@
+import math
+import tkinter
+from grahpics import *
+from tkinter import *
+
+# Created By George Shea a ßeta product an Open Source project
+
+def controller():
+
+    def ButtonOne():
+        global status
+        status = 1
+    def ButtonTwo():
+        global status
+        status = 2
+    def ButtonThree():
+        global status
+        status = 3
+    def ButtonFour():
+        global status
+        status = 4
+    def ButtonFive():
+        global fed
+        fed = 0
+    def ButtonSix():
+        global fed
+        fed = 1
+    def TaxMath():      # 1 single 2 married joint 3 married seperate 4 head of house hold
+        if status == 1:             # single controll
+            if fed == 0:
+                IncomeGui = (entry_1.get())
+                print("incomegui", IncomeGui)
+                income = float(IncomeGui)  # turns string into a flaot
+                print("income", income)
+                # Tax precents
+                firstPrecent = 5.35
+                secondPrecent = 7.05
+                thirdPrecent = 7.85
+                fourthPrecent = 9.85
+                firstBracketL = 0  # Tax Brackets for mn single
+                firstBracketH = 26520
+                SecondBracketL = 26521
+                SecondBracketH = 87110
+                thirdBracketL = 87111
+                thirdBracketH = 163890
+                # fourth tax brack is anything above this
+
+                if firstBracketL < income and income < firstBracketH:
+                    income = income * (firstPrecent / 100)
+                if SecondBracketL < income and income < SecondBracketH:
+                    incometwo = ((income - SecondBracketL) * (secondPrecent / 100))
+                    income = ((SecondBracketL) * (firstPrecent / 100)) + incometwo
+                if thirdBracketL < income and income < thirdBracketH:
+                    incomeThree = ((income - thirdBracketL) * (thirdPrecent / 100))
+                    incometwo = ((SecondBracketH - SecondBracketL) * (secondPrecent / 100))
+                    income = ((firstBracketH) * (firstPrecent / 100)) + incometwo + incomeThree
+                if income > thirdBracketH:
+                    incomeFour = ((income - thirdBracketH) * (fourthPrecent / 100))
+                    incomeThree = ((thirdBracketH - thirdBracketL) * (thirdPrecent / 100))
+                    incometwo = ((SecondBracketH - SecondBracketL) * (secondPrecent / 100))
+                    income = ((firstBracketH) * (firstPrecent / 100)) + incometwo + incomeThree + incomeFour
+                print("income after math", income)
+                IncomeStr = str(income)  # converts income back into a string
+                print("incoemstr", IncomeStr)
+                string_to_display = "" + IncomeStr
+                label_2 = Label(window, bg='gray32', fg='white', borderwidth=.001,width =17)
+                label_2["text"] = string_to_display
+                label_2.grid(row=1, column=2)
+            if fed == 1:
+                IncomeGui = (entry_1.get())
+                print("incomegui", IncomeGui)
+                income = float(IncomeGui)  # turns string into a flaot
+                print("income", income)
+                # Tax precents
+                firstPrecent2 = 10
+                secondPrecent2 = 12
+                thirdPrecent2 = 22
+                fourthPrecent2 = 24
+                fithPrecent2 = 32
+                sixthPrecent2 = 35
+                seventhPrecent2 = 37
+                firstBracketL5 = 0  # Tax Brackets for mn single
+                firstBracketH5 = 9700
+                SecondBracketL5 = 9701
+                SecondBracketH5 = 39475
+                thirdBracketL5 = 39456
+                thirdBracketH5 = 84200
+                fourthBracketL5 = 84201
+                fourthBracketH5 = 160725
+                fithBracketL5 = 160726
+                fithBracketH5 = 204100
+                sixthBracketL5 =  204101
+                sixthBracketH5 = 510300
+                # fourth tax brack is anything above this
+                if firstBracketL5 < income and income < firstBracketH5:
+                    income = income * (firstPrecent2 / 100)
+                if SecondBracketL5 < income and income < SecondBracketH5:
+                    incometwo = ((income - SecondBracketL5) * (secondPrecent2 / 100))
+                    income = ((SecondBracketL5) * (firstPrecent2 / 100)) + incometwo
+                if thirdBracketL5 < income and income < thirdBracketH5:
+                    incomeThree = ((income - thirdBracketL5) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH5 - SecondBracketL5) * (secondPrecent2 / 100))
+                    income = ((firstBracketH5) * (firstPrecent2 / 100)) + incometwo + incomeThree
+                if fourthBracketL5 < income and income < fourthBracketH5:
+                    incomeFour = ((income - fourthBracketL5) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH5 - thirdBracketL5) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH5 - SecondBracketL5) * (secondPrecent2 / 100))
+                    income = ((firstBracketH5) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour
+                if fithBracketL5 < income and income < fithBracketH5:
+                    incomeFive = ((fithBracketH5 - fithBracketL5)* (fithPrecent2/ 100))
+                    incomeFour = ((fourthBracketH5 - fourthBracketL5) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH5 - thirdBracketL5) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH5 - SecondBracketL5) * (secondPrecent2 / 100))
+                    income = ((firstBracketH5) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour + incomeFive
+                if sixthBracketL5 < income and income < sixthBracketH5:
+                    incomeSix = ((fithBracketH5 - fithBracketL5) * (sixthPrecent2/100))
+                    incomeFive = ((fourthBracketH5 - fourthBracketL5) * (fithPrecent2/ 100))
+                    incomeFour = ((thirdBracketH5 - thirdBracketL5) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH5 - thirdBracketL5) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH5 - SecondBracketL5) * (secondPrecent2 / 100))
+                    income = ((firstBracketH5) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour + incomeFive + incomeSix
+                if income > sixthBracketH5:
+                    incomeSeven = ((income - sixthBracketH5) *seventhPrecent2/100)
+                    incomeSix = ((fithBracketH5 - fithBracketL5) * (sixthPrecent2/100))
+                    incomeFive = ((fourthBracketH5 - fourthBracketL5) * (fithPrecent2/ 100))
+                    incomeFour = ((thirdBracketH5 - thirdBracketL5) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH5 - thirdBracketL5) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH5 - SecondBracketL5) * (secondPrecent2 / 100))
+                    income = ((firstBracketH5) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour + incomeFive + incomeSix + incomeSeven
+                print("income after math", income)
+                IncomeStr = str(income)  # converts income back into a string
+                print("incoemstr", IncomeStr)
+                string_to_display = "" + IncomeStr
+                label_4 = Label(window, bg='gray32', fg='white', borderwidth=.001,width =17)
+                label_4["text"] = string_to_display
+                label_4.grid(row=2, column=2)
+        if status == 2:         # marriared joint
+            if fed == 0:
+                IncomeGui = (entry_1.get())
+                print("incomegui", IncomeGui)
+                income = float(IncomeGui)  # turns string into a flaot
+                print("income", income)
+                # Tax precents
+                firstPrecent = 5.35
+                secondPrecent = 7.05
+                thirdPrecent = 7.85
+                fourthPrecent = 9.85
+                firstBracketL2 = 0  # Tax Brackets for mn single
+                firstBracketH2 = 38770
+                SecondBracketL2 = 38771
+                SecondBracketH2 = 154020
+                thirdBracketL2 = 154021
+                thirdBracketH2 = 273151
+                # fourth tax brack is anything above this
+                if firstBracketL2 < income and income < firstBracketH2:
+                    income = income * (firstPrecent / 100)
+                if SecondBracketL2 < income and income < SecondBracketH2:
+                    incometwo = ((income - SecondBracketL2) * (secondPrecent / 100))
+                    income = ((SecondBracketL2) * (firstPrecent / 100)) + incometwo
+                if thirdBracketL2 < income and income < thirdBracketH2:
+                    incomeThree = ((income - thirdBracketL2) * (thirdPrecent / 100))
+                    incometwo = ((SecondBracketH2 - SecondBracketL2) * (secondPrecent / 100))
+                    income = ((firstBracketH2) * (firstPrecent / 100)) + incometwo + incomeThree
+                if income > thirdBracketH2:
+                    incomeFour = ((income - thirdBracketH2) * (fourthPrecent / 100))
+                    incomeThree = ((thirdBracketH2 - thirdBracketL2) * (thirdPrecent / 100))
+                    incometwo = ((SecondBracketH2 - SecondBracketL2) * (secondPrecent / 100))
+                    income = ((firstBracketH2) * (firstPrecent / 100)) + incometwo + incomeThree + incomeFour
+                print("income after math", income)
+                IncomeStr = str(income)  # converts income back into a string
+                print("incoemstr", IncomeStr)
+                string_to_display = "" + IncomeStr
+                label_2 = Label(window, bg='gray32', fg='white', borderwidth=.001,width =17)
+                label_2["text"] = string_to_display
+                label_2.grid(row=1, column=2)
+            if fed == 1:
+                IncomeGui = (entry_1.get())
+                print("incomegui", IncomeGui)
+                income = float(IncomeGui)  # turns string into a flaot
+                print("income", income)
+                # Tax precents
+                firstPrecent2 = 10
+                secondPrecent2 = 12
+                thirdPrecent2 = 22
+                fourthPrecent2 = 24
+                fithPrecent2 = 32
+                sixthPrecent2 = 35
+                seventhPrecent2 = 37
+                firstBracketL6 = 0  # Tax Brackets for mn single
+                firstBracketH6 = 19400
+                SecondBracketL6 = 19401
+                SecondBracketH6 = 78950
+                thirdBracketL6 = 78951
+                thirdBracketH6 = 168400
+                fourthBracketL6 = 168401
+                fourthBracketH6 = 321450
+                fithBracketL6 = 321451
+                fithBracketH6 = 488200
+                sixthBracketL6 = 488201
+                sixthBracketH6 = 612351
+                # fourth tax brack is anything above this
+                if firstBracketL6 < income and income < firstBracketH6:
+                    income = income * (firstPrecent2 / 100)
+                if SecondBracketL6 < income and income < SecondBracketH6:
+                    incometwo = ((income - SecondBracketL6) * (secondPrecent / 100))
+                    income = ((SecondBracketL6) * (firstPrecent2 / 100)) + incometwo
+                if thirdBracketL6 < income and income < thirdBracketH6:
+                    incomeThree = ((income - thirdBracketL6) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH6 - SecondBracketL6) * (secondPrecent / 100))
+                    income = ((firstBracketH6) * (firstPrecent2 / 100)) + incometwo + incomeThree
+                if fourthBracketL6 < income and income < fourthBracketH6:
+                    incomeFour = ((income - fourthBracketL6) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH6 - thirdBracketL6) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH6 - SecondBracketL6) * (secondPrecent / 100))
+                    income = ((firstBracketH6) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour
+                if fithBracketL6 < income and income < fithBracketH6:
+                    incomeFive = ((fithBracketH6 - fithBracketL6)* (fithPrecent2/ 100))
+                    incomeFour = ((fourthBracketH6 - fourthBracketL6) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH6 - thirdBracketL6) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH6 - SecondBracketL6) * (secondPrecent / 100))
+                    income = ((firstBracketH6) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour + incomeFive
+                if sixthBracketL6 < income and income < sixthBracketH6:
+                    incomeSix = ((fithBracketH6 - fithBracketL6) * (sixthPrecent2/100))
+                    incomeFive = ((fourthBracketH6 - fourthBracketL6) * (fithPrecent2/ 100))
+                    incomeFour = ((thirdBracketH6 - thirdBracketL6) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH6 - thirdBracketL6) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH6 - SecondBracketL6) * (secondPrecent / 100))
+                    income = ((firstBracketH6) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour + incomeFive + incomeSix
+                if income > sixthBracketH6:
+                    incomeSeven = ((income - sixthBracketH6) *seventhPrecent2/100)
+                    incomeSix = ((fithBracketH6 - fithBracketL6) * (sixthPrecent2/100))
+                    incomeFive = ((fourthBracketH6 - fourthBracketL6) * (fithPrecent2/ 100))
+                    incomeFour = ((thirdBracketH6 - thirdBracketL6) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH6 - thirdBracketL6) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH6 - SecondBracketL6) * (secondPrecent / 100))
+                    income = ((firstBracketH6) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour + incomeFive + incomeSix + incomeSeven
+                print("income after math", income)
+                IncomeStr = str(income)  # converts income back into a string
+                print("incoemstr", IncomeStr)
+                string_to_display = "" + IncomeStr
+                label_4 = Label(window, bg='gray32', fg='white', borderwidth=.001,width =17)
+                label_4["text"] = string_to_display
+                label_4.grid(row=2, column=2)
+        if status == 3:         # marriared seperate
+            if fed == 0:
+                IncomeGui = (entry_1.get())
+                print("incomegui", IncomeGui)
+                income = float(IncomeGui)  # turns string into a flaot
+                print("income", income)
+                # Tax precents
+                firstPrecent = 5.35
+                secondPrecent = 7.05
+                thirdPrecent = 7.85
+                fourthPrecent = 9.85
+                firstBracketL3 = 0  # Tax Brackets for mn single
+                firstBracketH3 = 19390
+                SecondBracketL3 = 19831
+                SecondBracketH3 = 77010
+                thirdBracketL3 = 77011
+                thirdBracketH3 = 136580
+                # fourth tax brack is anything above this
+                if firstBracketL3 < income and income < firstBracketH3:
+                    income = income * (firstPrecent / 100)
+                if SecondBracketL3 < income and income < SecondBracketH3:
+                    incometwo = ((income - SecondBracketL3) * (secondPrecent / 100))
+                    income = ((SecondBracketL3) * (firstPrecent / 100)) + incometwo
+                if thirdBracketL3 < income and income < thirdBracketH3:
+                    incomeThree = ((income - thirdBracketL3) * (thirdPrecent / 100))
+                    incometwo = ((SecondBracketH3 - SecondBracketL3) * (secondPrecent / 100))
+                    income = ((firstBracketH3) * (firstPrecent / 100)) + incometwo + incomeThree
+                if income > thirdBracketH3:
+                    incomeFour = ((income - thirdBracketH3) * (fourthPrecent / 100))
+                    incomeThree = ((thirdBracketH3 - thirdBracketL3) * (thirdPrecent / 100))
+                    incometwo = ((SecondBracketH3 - SecondBracketL3) * (secondPrecent / 100))
+                    income = ((firstBracketH3) * (firstPrecent / 100)) + incometwo + incomeThree + incomeFour
+                print("income after math", income)
+                IncomeStr = str(income)  # converts income back into a string
+                print("incoemstr", IncomeStr)
+                string_to_display = "" + IncomeStr
+                label_2 = Label(window, bg='gray32', fg='white', borderwidth=.001,width =17)
+                label_2["text"] = string_to_display
+                label_2.grid(row=1, column=2)
+            if fed == 1:
+                IncomeGui = (entry_1.get())
+                print("incomegui", IncomeGui)
+                income = float(IncomeGui)  # turns string into a flaot
+                print("income", income)
+                # Tax precents
+                firstPrecent2 = 10
+                secondPrecent2 = 12
+                thirdPrecent2 = 22
+                fourthPrecent2 = 24
+                fithPrecent2 = 32
+                sixthPrecent2 = 35
+                seventhPrecent2 = 37
+                firstBracketL8 = 0  # Tax Brackets for mn single
+                firstBracketH8 = 13850
+                SecondBracketL8 = 13851
+                SecondBracketH8 = 52850
+                thirdBracketL8 = 52851
+                thirdBracketH8 = 84200
+                fourthBracketL8 = 84201
+                fourthBracketH8 = 160700
+                fithBracketL8 = 160701
+                fithBracketH8 = 204100
+                sixthBracketL8 = 204101
+                sixthBracketH8 = 510300
+                # fourth tax brack is anything above this
+                if firstBracketL8 < income and income < firstBracketH8:
+                    income = income * (firstPrecent2 / 100)
+                if SecondBracketL8 < income and income < SecondBracketH8:
+                    incometwo = ((income - SecondBracketL8) * (secondPrecent2 / 100))
+                    income = ((SecondBracketL8) * (firstPrecent2 / 100)) + incometwo
+                if thirdBracketL8 < income and income < thirdBracketH8:
+                    incomeThree = ((income - thirdBracketL8) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH8 - SecondBracketL8) * (secondPrecent2 / 100))
+                    income = ((firstBracketH8) * (firstPrecent2 / 100)) + incometwo + incomeThree
+                if fourthBracketL8 < income and income < fourthBracketH8:
+                    incomeFour = ((income - fourthBracketL8) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH8 - thirdBracketL8) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH8 - SecondBracketL8) * (secondPrecent2 / 100))
+                    income = ((firstBracketH8) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour
+                if fithBracketL8 < income and income < fithBracketH8:
+                    incomeFive = ((fithBracketH8 - fithBracketL8)* (fithPrecent2/ 100))
+                    incomeFour = ((fourthBracketH8 - fourthBracketL8) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH8 - thirdBracketL8) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH8 - SecondBracketL8) * (secondPrecent2 / 100))
+                    income = ((firstBracketH8) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour + incomeFive
+                if sixthBracketL8 < income and income < sixthBracketH8:
+                    incomeSix = ((fithBracketH8 - fithBracketL8) * (sixthPrecent2/100))
+                    incomeFive = ((fourthBracketH8 - fourthBracketL8) * (fithPrecent2 / 100))
+                    incomeFour = ((thirdBracketH8 - thirdBracketL8) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH8 - thirdBracketL8) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH8 - SecondBracketL8) * (secondPrecent2 / 100))
+                    income = ((firstBracketH8) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour + incomeFive + incomeSix
+                if income > sixthBracketH8:
+                    incomeSeven = ((income - sixthBracketH8) *seventhPrecent2/100)
+                    incomeSix = ((fithBracketH8 - fithBracketL8) * (sixthPrecent2/100))
+                    incomeFive = ((fourthBracketH8 - fourthBracketL8) * (fithPrecent2/ 100))
+                    incomeFour = ((thirdBracketH8 - thirdBracketL8) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH8 - thirdBracketL8) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH8 - SecondBracketL8) * (secondPrecent2 / 100))
+                    income = ((firstBracketH8) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour + incomeFive + incomeSix + incomeSeven
+                print("income after math", income)
+                IncomeStr = str(income)  # converts income back into a string
+                print("incoemstr", IncomeStr)
+                string_to_display = "" + IncomeStr
+                label_4 = Label(window, bg='gray32', fg='white', borderwidth=.001,width =17)
+                label_4["text"] = string_to_display
+                label_4.grid(row=2, column=2)
+        if status == 4:         # HOH
+            if fed == 0:
+                IncomeGui = (entry_1.get())
+                print("incomegui", IncomeGui)
+                income = float(IncomeGui)  # turns string into a flaot
+                print("income", income)
+                # Tax precents
+                firstPrecent = 5.35
+                secondPrecent = 7.05
+                thirdPrecent = 7.85
+                fourthPrecent = 9.85
+                firstBracketL4 = 0  # Tax Brackets for mn single
+                firstBracketH4 = 32650
+                SecondBracketL4 = 32651
+                SecondBracketH4 = 131190
+                thirdBracketL4 = 218520
+                thirdBracketH4 = 218521
+                # fourth tax brack is anything above this
+                if firstBracketL4 < income and income < firstBracketH4:
+                    income = income * (firstPrecent / 100)
+                if SecondBracketL4 < income and income < SecondBracketH4:
+                    incometwo = ((income - SecondBracketL4) * (secondPrecent / 100))
+                    income = ((SecondBracketL4) * (firstPrecent / 100)) + incometwo
+                if thirdBracketL4 < income and income < thirdBracketH4:
+                    incomeThree = ((income - thirdBracketL4) * (thirdPrecent / 100))
+                    incometwo = ((SecondBracketH4 - SecondBracketL4) * (secondPrecent / 100))
+                    income = ((firstBracketH4) * (firstPrecent / 100)) + incometwo + incomeThree
+                if income > thirdBracketH4:
+                    incomeFour = ((income - thirdBracketH4) * (fourthPrecent / 100))
+                    incomeThree = ((thirdBracketH4 - thirdBracketL4) * (thirdPrecent / 100))
+                    incometwo = ((SecondBracketH4 - SecondBracketL4) * (secondPrecent / 100))
+                    income = ((firstBracketH4) * (firstPrecent / 100)) + incometwo + incomeThree + incomeFour
+                print("income after math", income)
+                IncomeStr = str(income)  # converts income back into a string
+                print("incoemstr", IncomeStr)
+                string_to_display = "" + IncomeStr
+                label_2 = Label(window, bg='gray32', fg='white', borderwidth=.001,width =17)
+                label_2["text"] = string_to_display
+                label_2.grid(row=1, column=2)   # look here                     ----------------------------
+            if fed == 1:
+                IncomeGui = (entry_1.get())
+                print("incomegui", IncomeGui)
+                income = float(IncomeGui)  # turns string into a flaot
+                print("income", income)
+                # Tax precents
+                firstPrecent2 = 10
+                secondPrecent2 = 12
+                thirdPrecent2 = 22
+                fourthPrecent2 = 24
+                fithPrecent2 = 32
+                sixthPrecent2 = 35
+                seventhPrecent2 = 37
+                firstBracketL9 = 0  # Tax Brackets for mn single
+                firstBracketH9 = 13850
+                SecondBracketL9 = 13851
+                SecondBracketH9 = 52850
+                thirdBracketL9 = 52851
+                thirdBracketH9 = 84200
+                fourthBracketL9 = 84201
+                fourthBracketH9 = 160700
+                fithBracketL9 = 160701
+                fithBracketH9 = 204100
+                sixthBracketL9 = 204101
+                sixthBracketH9 = 510300
+                # fourth tax brack is anything above this
+                if firstBracketL9 < income and income < firstBracketH9:
+                    income = income * (firstPrecent2 / 100)
+                if SecondBracketL9 < income and income < SecondBracketH9:
+                    incometwo = ((income - SecondBracketL9) * (secondPrecent2 / 100))
+                    income = ((SecondBracketL9) * (firstPrecent2 / 100)) + incometwo
+                if thirdBracketL9 < income and income < thirdBracketH9:
+                    incomeThree = ((income - thirdBracketL9) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH9 - SecondBracketL9) * (secondPrecent2 / 100))
+                    income = ((firstBracketH9) * (firstPrecent2 / 100)) + incometwo + incomeThree
+                if fourthBracketL9 < income and income < fourthBracketH9:
+                    incomeFour = ((income - fourthBracketL9) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH9 - thirdBracketL9) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH9 - SecondBracketL9) * (secondPrecent2 / 100))
+                    income = ((firstBracketH9) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour
+                if fithBracketL9 < income and income < fithBracketH9:
+                    incomeFive = ((fithBracketH9 - fithBracketL9)* (fithPrecent2/ 100))
+                    incomeFour = ((fourthBracketH9 - fourthBracketL9) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH9 - thirdBracketL9) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH9 - SecondBracketL9) * (secondPrecent2 / 100))
+                    income = ((firstBracketH9) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour + incomeFive
+                if sixthBracketL9 < income and income < sixthBracketH9:
+                    incomeSix = ((fithBracketH9 - fithBracketL9) * (sixthPrecent2/100))
+                    incomeFive = ((fourthBracketH9 - fourthBracketL9) * (fithPrecent2 / 100))
+                    incomeFour = ((thirdBracketH9 - thirdBracketL9) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH9 - thirdBracketL9) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH9 - SecondBracketL9) * (secondPrecent2 / 100))
+                    income = ((firstBracketH9) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour + incomeFive + incomeSix
+                if income > sixthBracketH9:
+                    incomeSeven = ((income - sixthBracketH9) *seventhPrecent2/100)
+                    incomeSix = ((fithBracketH9 - fithBracketL9) * (sixthPrecent2/100))
+                    incomeFive = ((fourthBracketH9 - fourthBracketL9) * (fithPrecent2/ 100))
+                    incomeFour = ((thirdBracketH9 - thirdBracketL9) * (fourthPrecent2 / 100))
+                    incomeThree = ((thirdBracketH9 - thirdBracketL9) * (thirdPrecent2 / 100))
+                    incometwo = ((SecondBracketH9 - SecondBracketL9) * (secondPrecent2 / 100))
+                    income = ((firstBracketH9) * (firstPrecent2 / 100)) + incometwo + incomeThree + incomeFour + incomeFive + incomeSix + incomeSeven
+                print("income after math", income)
+                IncomeStr = str(income)  # converts income back into a string
+                print("incoemstr", IncomeStr)
+                string_to_display = "" + IncomeStr
+                label_4 = Label(window, bg='gray32', fg='white', borderwidth=.001,width =17)
+                label_4["text"] = string_to_display
+                label_4.grid(row=2, column=2)
+
+    window = GraphWin("start")
+    window.configure(bg='grey29')
+    label_1 = Label(window, text="Please Enter Income:", bg='gray29', fg='white', borderwidth=.001)
+    labeL_2 = Label(window, text= "Amount Due MN", bg ='gray29', fg='white', borderwidth=.001, width = 16)
+    labeL_3 = Label(window, text= "Amount Due Fed", bg ='gray29', fg='white', borderwidth=.001, width = 16)
+    entry_1 = Entry(window, bg='gray30', fg='white', borderwidth=.001)
+    button_0 = Button(window, text="  press here  ", bg='gray20', fg='white', borderwidth=.001, command=TaxMath, width = 15) # tax code
+    button_1 = Button(window, text="  Single  ", bg='gray32', fg='white', borderwidth=.001, width = 17,command=ButtonOne)
+    button_2 = Button(window, text="  Married Jointly  ", bg='gray32', fg='white', borderwidth=.001, width = 17, command=ButtonTwo)
+    button_3 = Button(window, text="  Married Seperatly  ", bg='gray32', fg='white', borderwidth=.001, width = 17, command=ButtonThree)
+    button_4 = Button(window, text="  Head Of Household  ", bg='gray32', fg='white', borderwidth=.001, width = 17, command=ButtonFour)
+    button_5 = Button(window, text="  MN Tax", bg='gray32', fg='white', borderwidth=.001, width = 17, command=ButtonFive) # state tax
+    button_6 = Button(window, text="  Fed Tax  ", bg='gray32', fg='white', borderwidth=.001, width = 17, command=ButtonSix) # fed tax
+    label_1.grid(row=0, column=1)   # income lable
+    labeL_2.grid(row=1, column=1)   # Amount due text
+    labeL_3.grid(row =2, column=1)  # amount due fed
+    entry_1.grid(row=0, column=2)   # take a guess what this does put income in here
+    button_0.grid(row=3, column=1)  # Actiavtion button
+    button_1.grid(row=0, column=0)  # single
+    button_2.grid(row=1, column=0)  # married joint
+    button_3.grid(row=2, column=0)  # married seperat
+    button_4.grid(row=3, column=0)  # head of house
+    button_5.grid(row=4, column=0)  # mn tax system
+    button_6.grid(row=5, column=0)  # fed tax system
+    window.mainloop()
+
+controller()
